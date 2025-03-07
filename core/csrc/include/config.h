@@ -1,0 +1,13 @@
+#define EXPR_DEBUG
+#define CONFIG_ITRACE
+#define CONFIG_DIFFTEST
+#define CONFIG_MTRACE
+
+// ----------------------------------------------------------------------------------------
+// if any of the config is inteded to be activated, uncomment the corresponding line
+// ----------------------------------------------------------------------------------------
+
+#undef EXPR_DEBUG
+// #undef CONFIG_ITRACE
+// #undef CONFIG_DIFFTEST
+// #undef CONFIG_MTRACE
