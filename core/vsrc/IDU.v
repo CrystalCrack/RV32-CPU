@@ -24,7 +24,7 @@ module IDU(
 
     output stop_sim
 );
-    parameter NUM_OF_INST = 36;
+    parameter NUM_OF_INST = 39;
 
     wire [`INST_NAME_LEN-1:0] inst_name;
     wire inst_is_addi;
@@ -63,6 +63,9 @@ module IDU(
     wire inst_is_srli;
     wire inst_is_sra;
     wire inst_is_srl;
+    wire inst_is_lb;
+    wire inst_is_slti;
+    wire inst_is_ori;
 
     // decode
     assign inst_is_addi = (opcode == 7'b0010011) && (funct3 == 3'b000);
@@ -101,6 +104,10 @@ module IDU(
     assign inst_is_srli = (opcode == 7'b0010011) && (funct3 == 3'b101) && (funct7 == 7'b0000000);
     assign inst_is_sra = (opcode == 7'b0110011) && (funct3 == 3'b101) && (funct7 == 7'b0100000);
     assign inst_is_srl = (opcode == 7'b0110011) && (funct3 == 3'b101) && (funct7 == 7'b0000000);
+    assign inst_is_lb = (opcode == 7'b0000011) && (funct3 == 3'b000);
+    assign inst_is_slti = (opcode == 7'b0010011) && (funct3 == 3'b010);
+    assign inst_is_ori = (opcode == 7'b0010011) && (funct3 == 3'b110);
+
 
     assign inst_name =  inst_is_addi ? 1 : //addi
                         inst_is_ebreak ? 2 : //ebreak
@@ -138,6 +145,9 @@ module IDU(
                         inst_is_srli ? 34 :  // srli
                         inst_is_sra ? 35 :  // sra
                         inst_is_srl ? 36 :  // srl
+                        inst_is_lb ? 37 :  // lb
+                        inst_is_slti ? 38 :  // slti
+                        inst_is_ori ? 39 :  // ori
                        0; 
     
     // assign imm = ({32{inst_is_addi}} & immI) ;
@@ -202,7 +212,10 @@ module IDU(
                             `INST_NAME_LEN'd33, 32'b0,
                             `INST_NAME_LEN'd34, immI,
                             `INST_NAME_LEN'd35, 32'b0,
-                            `INST_NAME_LEN'd36, 32'b0
+                            `INST_NAME_LEN'd36, 32'b0,
+                            `INST_NAME_LEN'd37, immI,
+                            `INST_NAME_LEN'd38, immI,
+                            `INST_NAME_LEN'd39, immI
                           }          )
     );
 
@@ -249,7 +262,10 @@ module IDU(
                             `INST_NAME_LEN'd33, 3'b111,
                             `INST_NAME_LEN'd34, 3'b111,
                             `INST_NAME_LEN'd35, 3'b010,
-                            `INST_NAME_LEN'd36, 3'b111
+                            `INST_NAME_LEN'd36, 3'b111,
+                            `INST_NAME_LEN'd37, 3'b000,
+                            `INST_NAME_LEN'd38, 3'b001,
+                            `INST_NAME_LEN'd39, 3'b100
                           }          )
     );
     
@@ -297,7 +313,10 @@ module IDU(
                             `INST_NAME_LEN'd33, 3'd0,
                             `INST_NAME_LEN'd34, 3'd0,
                             `INST_NAME_LEN'd35, 3'd0,
-                            `INST_NAME_LEN'd36, 3'd0
+                            `INST_NAME_LEN'd36, 3'd0,
+                            `INST_NAME_LEN'd37, 3'd1,
+                            `INST_NAME_LEN'd38, 3'd3,
+                            `INST_NAME_LEN'd39, 3'd0
                           }          )
     );
 
@@ -345,7 +364,10 @@ module IDU(
                             `INST_NAME_LEN'd33, 1'b0,
                             `INST_NAME_LEN'd34, 1'b0,
                             `INST_NAME_LEN'd35, 1'b0,
-                            `INST_NAME_LEN'd36, 1'b0
+                            `INST_NAME_LEN'd36, 1'b0,
+                            `INST_NAME_LEN'd37, 1'b0,
+                            `INST_NAME_LEN'd38, 1'b0,
+                            `INST_NAME_LEN'd39, 1'b0
                           }          )
     );
 
@@ -393,7 +415,10 @@ module IDU(
                             `INST_NAME_LEN'd33, 1'b0,
                             `INST_NAME_LEN'd34, 1'b1,
                             `INST_NAME_LEN'd35, 1'b0,
-                            `INST_NAME_LEN'd36, 1'b0
+                            `INST_NAME_LEN'd36, 1'b0,
+                            `INST_NAME_LEN'd37, 1'b1,
+                            `INST_NAME_LEN'd38, 1'b1,
+                            `INST_NAME_LEN'd39, 1'b1
                           }          )
     );
 
@@ -401,7 +426,7 @@ module IDU(
     assign branch = inst_is_beq | inst_is_bne | inst_is_bge | inst_is_bgeu | inst_is_blt | inst_is_bltu;
 
     // memory access
-    assign dvalid = inst_is_sw | inst_is_lw | inst_is_lbu | inst_is_sb | inst_is_sh | inst_is_lh | inst_is_lhu;
+    assign dvalid = inst_is_sw | inst_is_lw | inst_is_lbu | inst_is_sb | inst_is_sh | inst_is_lh | inst_is_lhu | inst_is_lb;
     assign dwen = inst_is_sw | inst_is_sb | inst_is_sh;
     assign dwmask = inst_is_sw ? 8'b0000_1111 : 
                     inst_is_sb ? 8'b0000_0001 :
@@ -411,7 +436,7 @@ module IDU(
     // compare
     // 0 for equal, 1 for unequal, 2 for less signed, 3 for less unsigned
     assign cmp_type = (inst_is_sltu | inst_is_sltiu) ? 2'd3 : 
-                      (inst_is_slt) ? 2'd2 :
+                      (inst_is_slt | inst_is_slti) ? 2'd2 :
                                       2'd0;
 
     // unrecognized instruction or ebreak

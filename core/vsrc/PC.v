@@ -1,5 +1,3 @@
-
-//pc
 module PC(
     input clk,
     input rst,
