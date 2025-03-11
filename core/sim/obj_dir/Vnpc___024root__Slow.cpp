@@ -2,9 +2,7 @@
 // DESCRIPTION: Verilator output: Design implementation internals
 // See Vnpc.h for the primary calling header
 
-#include "verilated.h"
-#include "verilated_dpi.h"
-
+#include "Vnpc__pch.h"
 #include "Vnpc__Syms.h"
 #include "Vnpc___024root.h"
 
@@ -19,7 +17,7 @@ Vnpc___024root::Vnpc___024root(Vnpc__Syms* symsp, const char* v__name)
 }
 
 void Vnpc___024root::__Vconfigure(bool first) {
-    if (false && first) {}  // Prevent unused
+    (void)first;  // Prevent unused variable warning
 }
 
 Vnpc___024root::~Vnpc___024root() {

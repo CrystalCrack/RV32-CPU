@@ -12,3 +12,4 @@
 #include "Vnpc___024root__DepSet_h6ead14dd__0__Slow.cpp"
 #include "Vnpc__Syms.cpp"
 #include "Vnpc__Trace__0__Slow.cpp"
+#include "Vnpc__TraceDecls__0__Slow.cpp"

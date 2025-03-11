@@ -3,7 +3,6 @@ VERILATOR = verilator
 VERILATOR_FLAGS = --cc -D --exe --trace --build -j 4 -O3 --x-assign fast --x-initial fast --noassert
 
 TOPNAME = npc
-NXDC_FILES = constr/top.nxdc
 BUILD_DIR = ./build
 SIM_DIR = ./sim
 OBJ_DIR = $(BUILD_DIR)/obj_dir
@@ -14,10 +13,6 @@ INC_PATH += $(abspath ./csrc/include) $(abspath ./tools/capstone/repo/include)
 $(shell mkdir -p $(BUILD_DIR))
 $(shell mkdir -p $(SIM_DIR))
 
-#constraint file
-SRC_AUTO_BIND = $(abspath $(BUILD_DIR)/auto_bind.cpp)
-$(SRC_AUTO_BIND): $(NXDC_FILES)
-	python3 $(NVBOARD_HOME)/scripts/auto_pin_bind.py $^ $@
 
 # Project source
 VSRCS=$(shell find $(abspath ./vsrc) -name "*.v" -or -name "*.sv")
@@ -71,5 +66,3 @@ clean:
 	rm -rf $(BUILD_DIR) $(SIM_DIR)
 
 .PHONY: all sim run clean
-
-include ../Makefile

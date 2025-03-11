@@ -13,12 +13,14 @@ VM_TIMING = 0
 VM_COVERAGE = 0
 # Parallel builds?  0/1 (from --output-split)
 VM_PARALLEL_BUILDS = 0
-# Tracing output mode?  0/1 (from --trace/--trace-fst)
+# Tracing output mode?  0/1 (from --trace/--trace-fst/--trace-saif)
 VM_TRACE = 1
 # Tracing output mode in VCD format?  0/1 (from --trace)
 VM_TRACE_VCD = 1
 # Tracing output mode in FST format?  0/1 (from --trace-fst)
 VM_TRACE_FST = 0
+# Tracing output mode in SAIF format?  0/1 (from --trace-saif)
+VM_TRACE_SAIF = 0
 
 ### Object file lists...
 # Generated module classes, fast-path, compile with highest optimization
@@ -44,6 +46,7 @@ VM_SUPPORT_FAST += \
 VM_SUPPORT_SLOW += \
 	Vnpc__Syms \
 	Vnpc__Trace__0__Slow \
+	Vnpc__TraceDecls__0__Slow \
 
 # Global classes, need linked once per executable, fast-path, compile with highest optimization
 VM_GLOBAL_FAST += \

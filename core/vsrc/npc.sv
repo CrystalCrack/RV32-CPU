@@ -33,7 +33,6 @@ module npc(
     wire ALU_zero;
     wire ALU_overflow;
     wire ALU_Cout;
-    wire [31:0] ALU_result;
 
     /* compare signals */
     wire equal;

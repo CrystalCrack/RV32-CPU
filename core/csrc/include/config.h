@@ -9,5 +9,5 @@
 
 #undef EXPR_DEBUG
 // #undef CONFIG_ITRACE
-// #undef CONFIG_DIFFTEST
+#undef CONFIG_DIFFTEST
 // #undef CONFIG_MTRACE
