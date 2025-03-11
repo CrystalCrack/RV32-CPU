@@ -30,8 +30,8 @@ INCFLAGS = $(addprefix -I, $(INC_PATH))
 CXXFLAGS += $(INCFLAGS) -DTOP_NAME="\"V$(TOPNAME)\""
 LDFLAGS += -lreadline -ltinfo -ldl -pie
 
-all:
-	@echo "Write this Makefile by your self."
+all: sim
+
 
 sim-all:$(addprefix Makefile., $(SIM_ALL))
 	@echo "test list [$(words $(SIM_ALL)) item(s)]:" $(SIM_ALL)

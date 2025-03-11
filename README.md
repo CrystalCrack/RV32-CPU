@@ -1,6 +1,16 @@
 ### RV32I CPU 设计和验证
-RTL设计位于
+RTL designs located at `core/vsrc`
+
+#### simulation
+install necessary files before simulation:
+** install verilator ** check verilator manual.
+other librarys:
+
 ```
-core/vsrc
+sudo apt install libreadline-dev
 ```
-其他仿真待建设
+then, goto core/
+```
+make sim
+```
+to run example program.
