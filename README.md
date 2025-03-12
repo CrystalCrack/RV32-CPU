@@ -1,5 +1,8 @@
 ## RV32I CPU 设计和验证
-RTL designs located at `core/vsrc`
+
+This project runs at `Ubuntu 22.04`.
+
+RTL designs are located at `core/vsrc`.
 
 ### Initialization
 **run initialzation script**
