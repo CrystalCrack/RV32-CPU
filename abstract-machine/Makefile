@@ -2,8 +2,6 @@
 
 AM_HOME := $(CPU_HOME)/abstract-machine
 NPC_HOME := $(CPU_HOME)/core
-$(shell echo "AM_HOME = $(AM_HOME)" > .am_home)
-$(shell echo "NPC_HOME = $(NPC_HOME)" > .npc_home)
 
 ### *Get a more readable version of this Makefile* by `make html` (requires python-markdown)
 html:
