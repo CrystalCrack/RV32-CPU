@@ -1,7 +1,7 @@
-### RV32I CPU 设计和验证
+## RV32I CPU 设计和验证
 RTL designs located at `core/vsrc`
 
-#### Initialization
+### Initialization
 **run initialzation script**
 
 First, switch to folder `RV32-CPU` and run:
@@ -34,7 +34,7 @@ cd $CPU_HOME/core
 make sim
 ```
 
-#### Run tests
+### Run tests
 
 We prepared some tests program in `tests/tests`.
 
@@ -56,6 +56,6 @@ to run your own test.
 
 If using simple debugger while testing is intended, you can modify file `$CPU_HOME/abstract-machine/scripts/platform/npc.mk` by removing the `-b` arg in line 15.
 
-#### Setup CPU Configuration
+### Setup CPU Configuration
 
 There are some optional configs in CPU simulations. If you want to activate or deactivate any, check out `core/csrc/include/config.h`.
