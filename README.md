@@ -16,7 +16,7 @@ to check whether env variables are right.
 
 Install necessary files before simulation:
 
-** install verilator **:check verilator manual.
+**install verilator** :check verilator manual.
 
 Other librarys:
 
