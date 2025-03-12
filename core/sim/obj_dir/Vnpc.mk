@@ -7,10 +7,8 @@
 default: Vnpc
 
 ### Constants...
-# Perl executable (from $PERL, defaults to 'perl' if not set)
+# Perl executable (from $PERL)
 PERL = perl
-# Python3 executable (from $PYTHON3, defaults to 'python3' if not set)
-PYTHON3 = python3
 # Path to Verilator kit (from $VERILATOR_ROOT)
 VERILATOR_ROOT = /usr/local/share/verilator
 # SystemC include directory with systemc.h (from $SYSTEMC_INCLUDE)
@@ -37,8 +35,8 @@ VM_PREFIX = Vnpc
 VM_MODPREFIX = Vnpc
 # User CFLAGS (from -CFLAGS on Verilator command line)
 VM_USER_CFLAGS = \
-	-I/home/freeb1e/RISCV/RV32-CPU/core/csrc/include \
-	-I/home/freeb1e/RISCV/RV32-CPU/core/tools/capstone/repo/include \
+	-I/home/crystc/workspace/RV32-CPU/core/csrc/include \
+	-I/home/crystc/workspace/RV32-CPU/core/tools/capstone/repo/include \
 	-DTOP_NAME="Vnpc" \
 
 # User LDLIBS (from -LDFLAGS on Verilator command line)
@@ -51,6 +49,8 @@ VM_USER_LDLIBS = \
 # User .cpp files (from .cpp's on Verilator command line)
 VM_USER_CLASSES = \
 	cpu \
+	mmio \
+	timer \
 	difftest \
 	expr \
 	sdb \
@@ -62,10 +62,10 @@ VM_USER_CLASSES = \
 
 # User .cpp directories (from .cpp's on Verilator command line)
 VM_USER_DIR = \
-	../.. \
-	../../csrc \
-	../../csrc/infrastructure \
-	../../csrc/utils \
+	/home/crystc/workspace/RV32-CPU/core/csrc \
+	/home/crystc/workspace/RV32-CPU/core/csrc/device \
+	/home/crystc/workspace/RV32-CPU/core/csrc/infrastructure \
+	/home/crystc/workspace/RV32-CPU/core/csrc/utils \
 
 
 ### Default rules...
@@ -77,24 +77,28 @@ include $(VERILATOR_ROOT)/include/verilated.mk
 ### Executable rules... (from --exe)
 VPATH += $(VM_USER_DIR)
 
-cpu.o: /home/freeb1e/RISCV/RV32-CPU/core/csrc/cpu.cpp 
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST)  -c -o $@ $<
-difftest.o: /home/freeb1e/RISCV/RV32-CPU/core/csrc/infrastructure/difftest.c 
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST)  -c -o $@ $<
-expr.o: /home/freeb1e/RISCV/RV32-CPU/core/csrc/infrastructure/expr.c 
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST)  -c -o $@ $<
-sdb.o: /home/freeb1e/RISCV/RV32-CPU/core/csrc/infrastructure/sdb.c 
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST)  -c -o $@ $<
-trace.o: /home/freeb1e/RISCV/RV32-CPU/core/csrc/infrastructure/trace.c 
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST)  -c -o $@ $<
-watchpoint.o: /home/freeb1e/RISCV/RV32-CPU/core/csrc/infrastructure/watchpoint.c 
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST)  -c -o $@ $<
-memory.o: /home/freeb1e/RISCV/RV32-CPU/core/csrc/memory.cpp 
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST)  -c -o $@ $<
-npc.o: /home/freeb1e/RISCV/RV32-CPU/core/csrc/npc.cpp 
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST)  -c -o $@ $<
-disasm.o: /home/freeb1e/RISCV/RV32-CPU/core/csrc/utils/disasm.c 
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST)  -c -o $@ $<
+cpu.o: /home/crystc/workspace/RV32-CPU/core/csrc/cpu.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+mmio.o: /home/crystc/workspace/RV32-CPU/core/csrc/device/mmio.c
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+timer.o: /home/crystc/workspace/RV32-CPU/core/csrc/device/timer.c
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+difftest.o: /home/crystc/workspace/RV32-CPU/core/csrc/infrastructure/difftest.c
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+expr.o: /home/crystc/workspace/RV32-CPU/core/csrc/infrastructure/expr.c
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+sdb.o: /home/crystc/workspace/RV32-CPU/core/csrc/infrastructure/sdb.c
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+trace.o: /home/crystc/workspace/RV32-CPU/core/csrc/infrastructure/trace.c
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+watchpoint.o: /home/crystc/workspace/RV32-CPU/core/csrc/infrastructure/watchpoint.c
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+memory.o: /home/crystc/workspace/RV32-CPU/core/csrc/memory.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+npc.o: /home/crystc/workspace/RV32-CPU/core/csrc/npc.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+disasm.o: /home/crystc/workspace/RV32-CPU/core/csrc/utils/disasm.c
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 
 ### Link rules... (from --exe)
 Vnpc: $(VK_USER_OBJS) $(VK_GLOBAL_OBJS) $(VM_PREFIX)__ALL.a $(VM_HIER_LIBS)

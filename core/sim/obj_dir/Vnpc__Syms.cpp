@@ -1,7 +1,7 @@
 // Verilated -*- C++ -*-
 // DESCRIPTION: Verilator output: Symbol table implementation internals
 
-#include "Vnpc__pch.h"
+#include "Vnpc__Syms.h"
 #include "Vnpc.h"
 #include "Vnpc___024root.h"
 
@@ -20,8 +20,6 @@ Vnpc__Syms::Vnpc__Syms(VerilatedContext* contextp, const char* namep, Vnpc* mode
     // Setup module instances
     , TOP{this, namep}
 {
-        // Check resources
-        Verilated::stackCheck(339);
     // Configure time unit / time precision
     _vm_contextp__->timeunit(-12);
     _vm_contextp__->timeprecision(-12);
@@ -29,8 +27,8 @@ Vnpc__Syms::Vnpc__Syms(VerilatedContext* contextp, const char* namep, Vnpc* mode
     // Setup each module's pointer back to symbol table (for public functions)
     TOP.__Vconfigure(true);
     // Setup scopes
-    __Vscope_npc.configure(this, name(), "npc", "npc", "<null>", -12, VerilatedScope::SCOPE_OTHER);
-    __Vscope_npc__u_RegisterFile.configure(this, name(), "npc.u_RegisterFile", "u_RegisterFile", "<null>", -12, VerilatedScope::SCOPE_OTHER);
+    __Vscope_npc.configure(this, name(), "npc", "npc", -12, VerilatedScope::SCOPE_OTHER);
+    __Vscope_npc__u_RegisterFile.configure(this, name(), "npc.u_RegisterFile", "u_RegisterFile", -12, VerilatedScope::SCOPE_OTHER);
     // Setup export functions
     for (int __Vfinal = 0; __Vfinal < 2; ++__Vfinal) {
         __Vscope_npc.exportInsert(__Vfinal, "get_pc_inst", (void*)(&Vnpc___024root____Vdpiexp_npc__DOT__get_pc_inst_TOP));

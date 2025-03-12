@@ -7,10 +7,9 @@
 
 #include "verilated.h"
 
-
 class Vnpc__Syms;
 
-class alignas(VL_CACHE_LINE_BYTES) Vnpc___024root final : public VerilatedModule {
+class Vnpc___024root final : public VerilatedModule {
   public:
 
     // DESIGN SPECIFIC STATE
@@ -61,9 +60,9 @@ class alignas(VL_CACHE_LINE_BYTES) Vnpc___024root final : public VerilatedModule
         CData/*0:0*/ npc__DOT__idu_inst__DOT__inst_is_lb;
         CData/*0:0*/ npc__DOT__idu_inst__DOT__inst_is_slti;
         CData/*0:0*/ npc__DOT__idu_inst__DOT__inst_is_ori;
-        CData/*0:0*/ npc__DOT__idu_inst__DOT____VdfgRegularize_hdcfcc17d_0_6;
-        CData/*0:0*/ npc__DOT__idu_inst__DOT____VdfgRegularize_hdcfcc17d_0_15;
-        CData/*0:0*/ npc__DOT__idu_inst__DOT____VdfgRegularize_hdcfcc17d_0_17;
+        CData/*0:0*/ npc__DOT__idu_inst__DOT____VdfgTmp_he69f398c__0;
+        CData/*0:0*/ npc__DOT__idu_inst__DOT____VdfgTmp_h873f971e__0;
+        CData/*0:0*/ npc__DOT__idu_inst__DOT____VdfgTmp_hd3ddd1c8__0;
         CData/*0:0*/ npc__DOT__idu_inst__DOT__getimm__DOT__i0__DOT__hit;
         CData/*2:0*/ npc__DOT__idu_inst__DOT__getALU_mode__DOT__i0__DOT__lut_out;
         CData/*0:0*/ npc__DOT__idu_inst__DOT__getALU_mode__DOT__i0__DOT__hit;
@@ -76,14 +75,12 @@ class alignas(VL_CACHE_LINE_BYTES) Vnpc___024root final : public VerilatedModule
         CData/*0:0*/ npc__DOT__u_ALU__DOT__add_overflow;
         CData/*0:0*/ npc__DOT__u_ALU__DOT__sub_overflow;
         CData/*0:0*/ npc__DOT__u_ALU__DOT__u_MuxKeyWithDefault__DOT__i0__DOT__hit;
-        CData/*0:0*/ __VstlFirstIteration;
-        CData/*0:0*/ __VicoFirstIteration;
-        CData/*0:0*/ __Vtrigprevexpr___TOP__clk__0;
+        CData/*0:0*/ __Vtrigrprev__TOP__clk;
         CData/*0:0*/ __VactContinue;
-    };
-    struct {
         IData/*31:0*/ npc__DOT__imm;
         IData/*31:0*/ npc__DOT__rf_rdata1;
+    };
+    struct {
         IData/*31:0*/ npc__DOT__rf_rdata2;
         IData/*31:0*/ npc__DOT__ALU_A;
         IData/*31:0*/ npc__DOT__ALU_B;
@@ -100,19 +97,19 @@ class alignas(VL_CACHE_LINE_BYTES) Vnpc___024root final : public VerilatedModule
         IData/*31:0*/ npc__DOT__u_RegisterFile__DOT__unnamedblk1__DOT__i;
         IData/*31:0*/ npc__DOT__u_ALU__DOT__add_result;
         IData/*31:0*/ npc__DOT__u_ALU__DOT__sub_result;
-        IData/*31:0*/ __VdfgRegularize_hd87f99a1_1_0;
-        IData/*31:0*/ __VdfgRegularize_hd87f99a1_1_1;
-        IData/*31:0*/ __VdfgRegularize_hd87f99a1_1_2;
-        IData/*31:0*/ __VdfgRegularize_hd87f99a1_1_3;
-        IData/*31:0*/ __VdfgRegularize_hd87f99a1_1_4;
-        IData/*31:0*/ __VdfgRegularize_hd87f99a1_1_5;
+        IData/*31:0*/ __VdfgTmp_hfeab4dac__0;
+        IData/*31:0*/ __VdfgTmp_h743af046__0;
+        IData/*31:0*/ __VdfgTmp_h7497e9b0__0;
+        IData/*31:0*/ __VdfgTmp_h71bd92c6__0;
+        IData/*31:0*/ __VdfgTmp_hfeb03756__0;
+        IData/*31:0*/ __VdfgTmp_hfe872291__0;
         IData/*31:0*/ __Vfunc_npc__DOT__inst_mem__DOT__pmem_read__1__Vfuncout;
         IData/*31:0*/ __Vfunc_npc__DOT__data_mem__DOT__pmem_read__2__Vfuncout;
+        IData/*31:0*/ __VstlIterCount;
+        IData/*31:0*/ __VicoIterCount;
         IData/*31:0*/ __VactIterCount;
         QData/*32:0*/ npc__DOT__u_ALU__DOT__out;
         QData/*32:0*/ npc__DOT__u_ALU__DOT__u_MuxKeyWithDefault__DOT__i0__DOT__lut_out;
-        QData/*32:0*/ __VdfgRegularize_hd87f99a1_1_11;
-        QData/*32:0*/ __VdfgRegularize_hd87f99a1_1_12;
         VlUnpacked<CData/*5:0*/, 39> npc__DOT__idu_inst__DOT__getimm__DOT__i0__DOT__key_list;
         VlUnpacked<IData/*31:0*/, 39> npc__DOT__idu_inst__DOT__getimm__DOT__i0__DOT__data_list;
         VlUnpacked<CData/*5:0*/, 39> npc__DOT__idu_inst__DOT__getALU_mode__DOT__i0__DOT__key_list;
@@ -144,7 +141,7 @@ class alignas(VL_CACHE_LINE_BYTES) Vnpc___024root final : public VerilatedModule
 
     // INTERNAL METHODS
     void __Vconfigure(bool first);
-};
+} VL_ATTR_ALIGNED(VL_CACHE_LINE_BYTES);
 
 
 #endif  // guard

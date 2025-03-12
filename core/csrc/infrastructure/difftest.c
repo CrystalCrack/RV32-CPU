@@ -10,6 +10,7 @@
 extern CPU_state state;
 extern int halt_ret;
 extern uint32_t halt_pc;
+static bool skip_ref = false;
 
 void display_error_msg();
 
@@ -53,6 +54,10 @@ void init_difftest(char *ref_so_file, long img_size, int port) {
   ref_difftest_regcpy(&this_, DIFFTEST_TO_REF);
 }
 
+void difftest_skip_ref(){
+  skip_ref = true;
+}
+
 bool difftest_checkregs(CPU_reg *ref_r, vaddr_t pc) {
   CPU_reg this_r = get_cpu_state();
   bool flag = true;
@@ -89,6 +94,14 @@ static void checkregs(CPU_reg *ref, vaddr_t pc) {
 
 void difftest_step(vaddr_t pc) {
   CPU_reg ref_r;
+
+  if (skip_ref) {
+    // to skip the checking of an instruction, just copy the reg state to reference design
+    CPU_reg this_ = get_cpu_state();
+    ref_difftest_regcpy(&this_, DIFFTEST_TO_REF);
+    skip_ref = false;
+    return;
+  }
 
   ref_difftest_exec(1);
   ref_difftest_regcpy(&ref_r, DIFFTEST_TO_DUT);

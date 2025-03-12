@@ -33,6 +33,7 @@ module npc(
     wire ALU_zero;
     wire ALU_overflow;
     wire ALU_Cout;
+    wire [31:0] ALU_result;
 
     /* compare signals */
     wire equal;
@@ -173,7 +174,7 @@ module npc(
                         funct3 == 3'b100 ? {24'b0, drdata[7:0]} : //lbu
                         funct3 == 3'b001 ? {{16{drdata[15]}}, drdata[15:0]} : //lh
                         funct3 == 3'b101 ? {16'b0, drdata[15:0]} : //lhu
-                                        drdata; //lw
+                                  drdata; //lw
 
     export "DPI-C" function get_pc_inst;
     function void get_pc_inst();

@@ -44,12 +44,15 @@ typedef uint32_t vaddr_t;
 typedef uint32_t paddr_t;
 typedef uint32_t word_t;
 
+void display_error_msg();
+
 #define ARRLEN(A) (sizeof(A) / sizeof(A[0]))
 
 #define Assert(cond, format, ...) \
   do { \
     if (!(cond)) { \
       fprintf(stderr, ANSI_BOLD ANSI_COLOR_RED format ANSI_COLOR_RESET, ## __VA_ARGS__); \
+      display_error_msg(); \
       assert(0); \
     } \
   } while (0)

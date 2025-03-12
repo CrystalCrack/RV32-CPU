@@ -1,2 +1,2 @@
-/home/crystc/ysyx-workbench/am-kernels/tests/cpu-tests/build/riscv32e-npc/tests/dummy.o: \
- /home/crystc/ysyx-workbench/am-kernels/tests/cpu-tests/tests/dummy.c
+/home/crystc/workspace/RV32-CPU/tests/build/riscv32e-npc/tests/dummy.o: \
+ /home/crystc/workspace/RV32-CPU/tests/tests/dummy.c

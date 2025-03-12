@@ -17,7 +17,7 @@
 #ifndef VL_DPIDECL_get_pc_inst_
 #define VL_DPIDECL_get_pc_inst_
 void get_pc_inst(int* cpu_pc, int* cpu_inst) {
-    // DPI export at /home/freeb1e/RISCV/RV32-CPU/core/vsrc/npc.sv:179:19
+    // DPI export at /home/crystc/workspace/RV32-CPU/core/vsrc/npc.sv:180:19
     return Vnpc::get_pc_inst(cpu_pc, cpu_inst);
 }
 #endif
@@ -25,7 +25,7 @@ void get_pc_inst(int* cpu_pc, int* cpu_inst) {
 #ifndef VL_DPIDECL_get_reg_
 #define VL_DPIDECL_get_reg_
 void get_reg(int addr, int* reg_data) {
-    // DPI export at /home/freeb1e/RISCV/RV32-CPU/core/vsrc/RegisterFile.v:29:19
+    // DPI export at /home/crystc/workspace/RV32-CPU/core/vsrc/RegisterFile.v:29:19
     return Vnpc::get_reg(addr, reg_data);
 }
 #endif

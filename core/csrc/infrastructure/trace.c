@@ -174,7 +174,7 @@ void write_iringbuf(vaddr_t pc, uint32_t inst) {
 }
 
 void display_iringbuf() {
-  //void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
+  void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
   char msg[128];
   char *p;
   for (int i = 0; i < IRNGBUF_LEN; i ++) {
@@ -189,7 +189,7 @@ void display_iringbuf() {
       for(int j = 0;j < 2; j++){
         *(p++) = '\t';
       }
-      //disassemble(p, sizeof(msg) - (p - msg), iringbuf[i].pc, inst, 4);
+      disassemble(p, sizeof(msg) - (p - msg), iringbuf[i].pc, inst, 4);
       if(i == iringbuf_ptr-1){
         printf("==>" ANSI_COLOR_RED "%s\n" ANSI_COLOR_RESET, msg);
       }else{

@@ -62,6 +62,7 @@ module IDU(
     wire inst_is_srl;
     wire inst_is_srli;
     wire inst_is_sra;
+    wire inst_is_srl;
     wire inst_is_lb;
     wire inst_is_slti;
     wire inst_is_ori;

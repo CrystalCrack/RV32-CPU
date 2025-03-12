@@ -1,8 +1,10 @@
 // Verilated -*- C++ -*-
 // DESCRIPTION: Verilator output: Model implementation (design independent parts)
 
-#include "Vnpc__pch.h"
+#include "Vnpc.h"
+#include "Vnpc__Syms.h"
 #include "verilated_vcd_c.h"
+#include "verilated_dpi.h"
 
 //============================================================
 // Constructors
@@ -16,8 +18,6 @@ Vnpc::Vnpc(VerilatedContext* _vcontextp__, const char* _vcname__)
 {
     // Register model with the context
     contextp()->addModel(this);
-    contextp()->traceBaseModelCbAdd(
-        [this](VerilatedTraceBaseC* tfp, int levels, int options) { traceBaseModel(tfp, levels, options); });
 }
 
 Vnpc::Vnpc(const char* _vcname__)
@@ -58,9 +58,13 @@ void Vnpc::eval_step() {
         Vnpc___024root___eval_initial(&(vlSymsp->TOP));
         Vnpc___024root___eval_settle(&(vlSymsp->TOP));
     }
+    // MTask 0 start
+    VL_DEBUG_IF(VL_DBG_MSGF("MTask0 starting\n"););
+    Verilated::mtaskId(0);
     VL_DEBUG_IF(VL_DBG_MSGF("+ Eval\n"););
     Vnpc___024root___eval(&(vlSymsp->TOP));
     // Evaluate cleanup
+    Verilated::endOfThreadMTask(vlSymsp->__Vm_evalMsgQp);
     Verilated::endOfEval(vlSymsp->__Vm_evalMsgQp);
 }
 
@@ -69,7 +73,7 @@ void Vnpc::eval_step() {
 bool Vnpc::eventsPending() { return false; }
 
 uint64_t Vnpc::nextTimeSlot() {
-    VL_FATAL_MT(__FILE__, __LINE__, "", "No delays in the design");
+    VL_FATAL_MT(__FILE__, __LINE__, "", "%Error: No delays in the design");
     return 0;
 }
 
@@ -95,18 +99,12 @@ VL_ATTR_COLD void Vnpc::final() {
 const char* Vnpc::hierName() const { return vlSymsp->name(); }
 const char* Vnpc::modelName() const { return "Vnpc"; }
 unsigned Vnpc::threads() const { return 1; }
-void Vnpc::prepareClone() const { contextp()->prepareClone(); }
-void Vnpc::atClone() const {
-    contextp()->threadPoolpOnClone();
-}
 std::unique_ptr<VerilatedTraceConfig> Vnpc::traceConfig() const {
     return std::unique_ptr<VerilatedTraceConfig>{new VerilatedTraceConfig{false, false, false}};
 };
 
 //============================================================
 // Trace configuration
-
-void Vnpc___024root__trace_decl_types(VerilatedVcd* tracep);
 
 void Vnpc___024root__trace_init_top(Vnpc___024root* vlSelf, VerilatedVcd* tracep);
 
@@ -119,22 +117,21 @@ VL_ATTR_COLD static void trace_init(void* voidSelf, VerilatedVcd* tracep, uint32
             "Turning on wave traces requires Verilated::traceEverOn(true) call before time 0.");
     }
     vlSymsp->__Vm_baseCode = code;
-    tracep->pushPrefix(std::string{vlSymsp->name()}, VerilatedTracePrefixType::SCOPE_MODULE);
-    Vnpc___024root__trace_decl_types(tracep);
+    tracep->scopeEscape(' ');
+    tracep->pushNamePrefix(std::string{vlSymsp->name()} + ' ');
     Vnpc___024root__trace_init_top(vlSelf, tracep);
-    tracep->popPrefix();
+    tracep->popNamePrefix();
+    tracep->scopeEscape('.');
 }
 
 VL_ATTR_COLD void Vnpc___024root__trace_register(Vnpc___024root* vlSelf, VerilatedVcd* tracep);
 
-VL_ATTR_COLD void Vnpc::traceBaseModel(VerilatedTraceBaseC* tfp, int levels, int options) {
-    (void)levels; (void)options;
-    VerilatedVcdC* const stfp = dynamic_cast<VerilatedVcdC*>(tfp);
-    if (VL_UNLIKELY(!stfp)) {
-        vl_fatal(__FILE__, __LINE__, __FILE__,"'Vnpc::trace()' called on non-VerilatedVcdC object;"
-            " use --trace-fst with VerilatedFst object, and --trace with VerilatedVcd object");
+VL_ATTR_COLD void Vnpc::trace(VerilatedVcdC* tfp, int levels, int options) {
+    if (tfp->isOpen()) {
+        vl_fatal(__FILE__, __LINE__, __FILE__,"'Vnpc::trace()' shall not be called after 'VerilatedVcdC::open()'.");
     }
-    stfp->spTrace()->addModel(this);
-    stfp->spTrace()->addInitCb(&trace_init, &(vlSymsp->TOP));
-    Vnpc___024root__trace_register(&(vlSymsp->TOP), stfp->spTrace());
+    if (false && levels && options) {}  // Prevent unused
+    tfp->spTrace()->addModel(this);
+    tfp->spTrace()->addInitCb(&trace_init, &(vlSymsp->TOP));
+    Vnpc___024root__trace_register(&(vlSymsp->TOP), tfp->spTrace());
 }

@@ -21,7 +21,7 @@ using Vnpc__Vcb_get_pc_inst_t = void (*) (Vnpc__Syms* __restrict vlSymsp, IData/
 using Vnpc__Vcb_get_reg_t = void (*) (Vnpc__Syms* __restrict vlSymsp, IData/*31:0*/ addr, IData/*31:0*/ &reg_data);
 
 // SYMS CLASS (contains all model state)
-class alignas(VL_CACHE_LINE_BYTES)Vnpc__Syms final : public VerilatedSyms {
+class Vnpc__Syms final : public VerilatedSyms {
   public:
     // INTERNAL STATE
     Vnpc* const __Vm_modelp;
@@ -43,6 +43,6 @@ class alignas(VL_CACHE_LINE_BYTES)Vnpc__Syms final : public VerilatedSyms {
 
     // METHODS
     const char* name() { return TOP.name(); }
-};
+} VL_ATTR_ALIGNED(VL_CACHE_LINE_BYTES);
 
 #endif  // guard
