@@ -2,6 +2,8 @@
 RTL designs located at `core/vsrc`
 
 #### Initialization
+**run initialzation script**
+
 First, switch to folder `RV32-CPU` and run:
 ```
 bash init.sh
@@ -16,22 +18,20 @@ to check whether env variables are right.
 
 Install necessary files before simulation:
 
-**install verilator**: check verilator manual.
+**install verilator**
+[check verilator manual](https://verilator.org/guide/latest/install.html)
 
-Other librarys:
+**install dependant libraries**
 
 ```
 sudo apt install libreadline-dev
 ```
-Then, 
 
+**run example program**
 ```
 cd $CPU_HOME/core
 make sim
 ```
-
-to run example program.
-
 
 #### Run tests
 
