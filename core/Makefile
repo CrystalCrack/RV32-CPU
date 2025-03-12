@@ -20,7 +20,7 @@ SIM_ALL ?= $(notdir $(shell find $(abspath ./csrc) -name "*.c" -or -name "*.cc" 
 SIM_CSRCS = $(shell find $(abspath ./csrc) -name "*.c" -or -name "*.cc" -or -name "*.cpp")
 CSRCS= $(SIM_CSRCS) $(SRC_AUTO_BIND)
 
-LOCAL_ARGS += -d $(NEMU_HOME)/build/riscv32-nemu-interpreter-so
+LOCAL_ARGS += -d $(CPU_HOME)/core/
 
 # Rules for NVBoard
 # include $(NVBOARD_HOME)/scripts/nvboard.mk
