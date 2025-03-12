@@ -19,6 +19,7 @@ to check whether env variables are right.
 Install necessary files before simulation:
 
 **install verilator**
+
 [check verilator manual](https://verilator.org/guide/latest/install.html)
 
 **install dependant libraries**
