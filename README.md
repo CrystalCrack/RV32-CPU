@@ -16,6 +16,8 @@ Then try
 
 ```
 $CPU_HOME
+$NPC_HOME
+$AM_HOME
 ```
 to check whether env variables are right.
 
