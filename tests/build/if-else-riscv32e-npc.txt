@@ -1,5 +1,5 @@
 
-/home/crystc/ysyx-workbench/am-kernels/tests/cpu-tests/build/if-else-riscv32e-npc.elf:     file format elf32-littleriscv
+/home/azureuser/RV32-CPU/tests/build/if-else-riscv32e-npc.elf:     file format elf32-littleriscv
 
 
 Disassembly of section .text:
@@ -8,7 +8,7 @@ Disassembly of section .text:
 80000000:	00000413          	li	s0,0
 80000004:	00009117          	auipc	sp,0x9
 80000008:	ffc10113          	addi	sp,sp,-4 # 80009000 <_end>
-8000000c:	0bc000ef          	jal	ra,800000c8 <_trm_init>
+8000000c:	0c4000ef          	jal	ra,800000d0 <_trm_init>
 
 80000010 <check>:
 80000010:	00050463          	beqz	a0,80000018 <check+0x8>
@@ -24,9 +24,9 @@ Disassembly of section .text:
 80000030:	00912023          	sw	s1,0(sp)
 80000034:	00112423          	sw	ra,8(sp)
 80000038:	00000497          	auipc	s1,0x0
-8000003c:	12048493          	addi	s1,s1,288 # 80000158 <test_data>
+8000003c:	13048493          	addi	s1,s1,304 # 80000168 <test_data>
 80000040:	00000417          	auipc	s0,0x0
-80000044:	0e040413          	addi	s0,s0,224 # 80000120 <ans>
+80000044:	0f040413          	addi	s0,s0,240 # 80000130 <ans>
 80000048:	0004a703          	lw	a4,0(s1)
 8000004c:	1f400793          	li	a5,500
 80000050:	00448493          	addi	s1,s1,4
@@ -48,7 +48,7 @@ Disassembly of section .text:
 80000090:	00153513          	seqz	a0,a0
 80000094:	f7dff0ef          	jal	ra,80000010 <check>
 80000098:	00000797          	auipc	a5,0x0
-8000009c:	0f878793          	addi	a5,a5,248 # 80000190 <_bss_start>
+8000009c:	10878793          	addi	a5,a5,264 # 800001a0 <_bss_start>
 800000a0:	faf494e3          	bne	s1,a5,80000048 <main+0x20>
 800000a4:	00100513          	li	a0,1
 800000a8:	f69ff0ef          	jal	ra,80000010 <check>
@@ -60,12 +60,16 @@ Disassembly of section .text:
 800000c0:	00008067          	ret
 
 800000c4 <halt>:
-800000c4:	0000006f          	j	800000c4 <halt>
+800000c4:	00050513          	mv	a0,a0
+800000c8:	00100073          	ebreak
+800000cc:	0000006f          	j	800000cc <halt+0x8>
 
-800000c8 <_trm_init>:
-800000c8:	ff410113          	addi	sp,sp,-12
-800000cc:	00000517          	auipc	a0,0x0
-800000d0:	01450513          	addi	a0,a0,20 # 800000e0 <_etext>
-800000d4:	00112423          	sw	ra,8(sp)
-800000d8:	f51ff0ef          	jal	ra,80000028 <main>
-800000dc:	0000006f          	j	800000dc <_trm_init+0x14>
+800000d0 <_trm_init>:
+800000d0:	ff410113          	addi	sp,sp,-12
+800000d4:	00000517          	auipc	a0,0x0
+800000d8:	01c50513          	addi	a0,a0,28 # 800000f0 <_etext>
+800000dc:	00112423          	sw	ra,8(sp)
+800000e0:	f49ff0ef          	jal	ra,80000028 <main>
+800000e4:	00050513          	mv	a0,a0
+800000e8:	00100073          	ebreak
+800000ec:	0000006f          	j	800000ec <_trm_init+0x1c>

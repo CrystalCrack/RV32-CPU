@@ -1,5 +1,5 @@
 
-/home/crystc/ysyx-workbench/am-kernels/tests/cpu-tests/build/to-lower-case-riscv32e-npc.elf:     file format elf32-littleriscv
+/home/azureuser/RV32-CPU/tests/build/to-lower-case-riscv32e-npc.elf:     file format elf32-littleriscv
 
 
 Disassembly of section .text:
@@ -8,7 +8,7 @@ Disassembly of section .text:
 80000000:	00000413          	li	s0,0
 80000004:	00009117          	auipc	sp,0x9
 80000008:	ffc10113          	addi	sp,sp,-4 # 80009000 <_end>
-8000000c:	098000ef          	jal	ra,800000a4 <_trm_init>
+8000000c:	0a0000ef          	jal	ra,800000ac <_trm_init>
 
 80000010 <check>:
 80000010:	00050463          	beqz	a0,80000018 <check+0x8>
@@ -26,7 +26,7 @@ Disassembly of section .text:
 80000038:	00000413          	li	s0,0
 8000003c:	00000713          	li	a4,0
 80000040:	00000497          	auipc	s1,0x0
-80000044:	0bc48493          	addi	s1,s1,188 # 800000fc <ans>
+80000044:	0cc48493          	addi	s1,s1,204 # 8000010c <ans>
 80000048:	008486b3          	add	a3,s1,s0
 8000004c:	0006c503          	lbu	a0,0(a3)
 80000050:	00140413          	addi	s0,s0,1
@@ -51,12 +51,16 @@ Disassembly of section .text:
 8000009c:	00008067          	ret
 
 800000a0 <halt>:
-800000a0:	0000006f          	j	800000a0 <halt>
+800000a0:	00050513          	mv	a0,a0
+800000a4:	00100073          	ebreak
+800000a8:	0000006f          	j	800000a8 <halt+0x8>
 
-800000a4 <_trm_init>:
-800000a4:	ff410113          	addi	sp,sp,-12
-800000a8:	00000517          	auipc	a0,0x0
-800000ac:	01450513          	addi	a0,a0,20 # 800000bc <_etext>
-800000b0:	00112423          	sw	ra,8(sp)
-800000b4:	f75ff0ef          	jal	ra,80000028 <main>
-800000b8:	0000006f          	j	800000b8 <_trm_init+0x14>
+800000ac <_trm_init>:
+800000ac:	ff410113          	addi	sp,sp,-12
+800000b0:	00000517          	auipc	a0,0x0
+800000b4:	01c50513          	addi	a0,a0,28 # 800000cc <_etext>
+800000b8:	00112423          	sw	ra,8(sp)
+800000bc:	f6dff0ef          	jal	ra,80000028 <main>
+800000c0:	00050513          	mv	a0,a0
+800000c4:	00100073          	ebreak
+800000c8:	0000006f          	j	800000c8 <_trm_init+0x1c>

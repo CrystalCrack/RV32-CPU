@@ -1,5 +1,5 @@
 
-/home/crystc/ysyx-workbench/am-kernels/tests/cpu-tests/build/load-store-riscv32e-npc.elf:     file format elf32-littleriscv
+/home/azureuser/RV32-CPU/tests/build/load-store-riscv32e-npc.elf:     file format elf32-littleriscv
 
 
 Disassembly of section .text:
@@ -8,7 +8,7 @@ Disassembly of section .text:
 80000000:	00000413          	li	s0,0
 80000004:	00009117          	auipc	sp,0x9
 80000008:	ffc10113          	addi	sp,sp,-4 # 80009000 <_end>
-8000000c:	1d0000ef          	jal	ra,800001dc <_trm_init>
+8000000c:	1d8000ef          	jal	ra,800001e4 <_trm_init>
 
 80000010 <check>:
 80000010:	00050463          	beqz	a0,80000018 <check+0x8>
@@ -22,11 +22,11 @@ Disassembly of section .text:
 80000028:	fec10113          	addi	sp,sp,-20
 8000002c:	00912423          	sw	s1,8(sp)
 80000030:	00000497          	auipc	s1,0x0
-80000034:	25448493          	addi	s1,s1,596 # 80000284 <mem>
+80000034:	26448493          	addi	s1,s1,612 # 80000294 <mem>
 80000038:	00812623          	sw	s0,12(sp)
 8000003c:	00112823          	sw	ra,16(sp)
 80000040:	00000697          	auipc	a3,0x0
-80000044:	1f468693          	addi	a3,a3,500 # 80000234 <lh_ans>
+80000044:	20468693          	addi	a3,a3,516 # 80000244 <lh_ans>
 80000048:	00048413          	mv	s0,s1
 8000004c:	00048713          	mv	a4,s1
 80000050:	00071503          	lh	a0,0(a4)
@@ -40,11 +40,11 @@ Disassembly of section .text:
 80000070:	fa1ff0ef          	jal	ra,80000010 <check>
 80000074:	00412703          	lw	a4,4(sp)
 80000078:	00000797          	auipc	a5,0x0
-8000007c:	21c78793          	addi	a5,a5,540 # 80000294 <sh_ans>
+8000007c:	22c78793          	addi	a5,a5,556 # 800002a4 <sh_ans>
 80000080:	00012683          	lw	a3,0(sp)
 80000084:	fcf716e3          	bne	a4,a5,80000050 <main+0x28>
 80000088:	00000717          	auipc	a4,0x0
-8000008c:	1cc70713          	addi	a4,a4,460 # 80000254 <lhu_ans>
+8000008c:	1dc70713          	addi	a4,a4,476 # 80000264 <lhu_ans>
 80000090:	00072683          	lw	a3,0(a4)
 80000094:	0004d503          	lhu	a0,0(s1)
 80000098:	00470713          	addi	a4,a4,4
@@ -54,7 +54,7 @@ Disassembly of section .text:
 800000a8:	f69ff0ef          	jal	ra,80000010 <check>
 800000ac:	00248493          	addi	s1,s1,2
 800000b0:	00000797          	auipc	a5,0x0
-800000b4:	1e478793          	addi	a5,a5,484 # 80000294 <sh_ans>
+800000b4:	1f478793          	addi	a5,a5,500 # 800002a4 <sh_ans>
 800000b8:	00012703          	lw	a4,0(sp)
 800000bc:	fcf49ae3          	bne	s1,a5,80000090 <main+0x68>
 800000c0:	00244683          	lbu	a3,2(s0)
@@ -62,7 +62,7 @@ Disassembly of section .text:
 800000c8:	00344703          	lbu	a4,3(s0)
 800000cc:	00444783          	lbu	a5,4(s0)
 800000d0:	00000497          	auipc	s1,0x0
-800000d4:	1a448493          	addi	s1,s1,420 # 80000274 <lwlr_ans>
+800000d4:	1b448493          	addi	s1,s1,436 # 80000284 <lwlr_ans>
 800000d8:	00869693          	slli	a3,a3,0x8
 800000dc:	00c6e6b3          	or	a3,a3,a2
 800000e0:	0004a503          	lw	a0,0(s1)
@@ -102,7 +102,7 @@ Disassembly of section .text:
 80000168:	00153513          	seqz	a0,a0
 8000016c:	ea5ff0ef          	jal	ra,80000010 <check>
 80000170:	00000697          	auipc	a3,0x0
-80000174:	12468693          	addi	a3,a3,292 # 80000294 <sh_ans>
+80000174:	13468693          	addi	a3,a3,308 # 800002a4 <sh_ans>
 80000178:	00100493          	li	s1,1
 8000017c:	00100793          	li	a5,1
 80000180:	009797b3          	sll	a5,a5,s1
@@ -129,12 +129,16 @@ Disassembly of section .text:
 800001d4:	00008067          	ret
 
 800001d8 <halt>:
-800001d8:	0000006f          	j	800001d8 <halt>
+800001d8:	00050513          	mv	a0,a0
+800001dc:	00100073          	ebreak
+800001e0:	0000006f          	j	800001e0 <halt+0x8>
 
-800001dc <_trm_init>:
-800001dc:	ff410113          	addi	sp,sp,-12
-800001e0:	00000517          	auipc	a0,0x0
-800001e4:	01450513          	addi	a0,a0,20 # 800001f4 <_etext>
-800001e8:	00112423          	sw	ra,8(sp)
-800001ec:	e3dff0ef          	jal	ra,80000028 <main>
-800001f0:	0000006f          	j	800001f0 <_trm_init+0x14>
+800001e4 <_trm_init>:
+800001e4:	ff410113          	addi	sp,sp,-12
+800001e8:	00000517          	auipc	a0,0x0
+800001ec:	01c50513          	addi	a0,a0,28 # 80000204 <_etext>
+800001f0:	00112423          	sw	ra,8(sp)
+800001f4:	e35ff0ef          	jal	ra,80000028 <main>
+800001f8:	00050513          	mv	a0,a0
+800001fc:	00100073          	ebreak
+80000200:	0000006f          	j	80000200 <_trm_init+0x1c>

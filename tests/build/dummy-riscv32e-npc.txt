@@ -1,5 +1,5 @@
 
-/home/crystc/workspace/RV32-CPU/tests/build/dummy-riscv32e-npc.elf:     file format elf32-littleriscv
+/home/azureuser/RV32-CPU/tests/build/dummy-riscv32e-npc.elf:     file format elf32-littleriscv
 
 
 Disassembly of section .text:

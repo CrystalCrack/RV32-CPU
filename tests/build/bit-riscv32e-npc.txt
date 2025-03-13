@@ -1,5 +1,5 @@
 
-/home/crystc/ysyx-workbench/am-kernels/tests/cpu-tests/build/bit-riscv32e-npc.elf:     file format elf32-littleriscv
+/home/azureuser/RV32-CPU/tests/build/bit-riscv32e-npc.elf:     file format elf32-littleriscv
 
 
 Disassembly of section .text:
@@ -8,7 +8,7 @@ Disassembly of section .text:
 80000000:	00000413          	li	s0,0
 80000004:	00009117          	auipc	sp,0x9
 80000008:	ffc10113          	addi	sp,sp,-4 # 80009000 <_end>
-8000000c:	1f0000ef          	jal	ra,800001fc <_trm_init>
+8000000c:	1f8000ef          	jal	ra,80000204 <_trm_init>
 
 80000010 <check>:
 80000010:	00050463          	beqz	a0,80000018 <check+0x8>
@@ -141,12 +141,16 @@ Disassembly of section .text:
 800001f4:	00008067          	ret
 
 800001f8 <halt>:
-800001f8:	0000006f          	j	800001f8 <halt>
+800001f8:	00050513          	mv	a0,a0
+800001fc:	00100073          	ebreak
+80000200:	0000006f          	j	80000200 <halt+0x8>
 
-800001fc <_trm_init>:
-800001fc:	ff410113          	addi	sp,sp,-12
-80000200:	00000517          	auipc	a0,0x0
-80000204:	01450513          	addi	a0,a0,20 # 80000214 <_etext>
-80000208:	00112423          	sw	ra,8(sp)
-8000020c:	e9dff0ef          	jal	ra,800000a8 <main>
-80000210:	0000006f          	j	80000210 <_trm_init+0x14>
+80000204 <_trm_init>:
+80000204:	ff410113          	addi	sp,sp,-12
+80000208:	00000517          	auipc	a0,0x0
+8000020c:	01c50513          	addi	a0,a0,28 # 80000224 <_etext>
+80000210:	00112423          	sw	ra,8(sp)
+80000214:	e95ff0ef          	jal	ra,800000a8 <main>
+80000218:	00050513          	mv	a0,a0
+8000021c:	00100073          	ebreak
+80000220:	0000006f          	j	80000220 <_trm_init+0x1c>

@@ -1,5 +1,5 @@
 
-/home/crystc/ysyx-workbench/am-kernels/tests/cpu-tests/build/quick-sort-riscv32e-npc.elf:     file format elf32-littleriscv
+/home/azureuser/RV32-CPU/tests/build/quick-sort-riscv32e-npc.elf:     file format elf32-littleriscv
 
 
 Disassembly of section .text:
@@ -8,7 +8,7 @@ Disassembly of section .text:
 80000000:	00000413          	li	s0,0
 80000004:	00009117          	auipc	sp,0x9
 80000008:	ffc10113          	addi	sp,sp,-4 # 80009000 <_end>
-8000000c:	3e8000ef          	jal	ra,800003f4 <_trm_init>
+8000000c:	3f0000ef          	jal	ra,800003fc <_trm_init>
 
 80000010 <check>:
 80000010:	00050463          	beqz	a0,80000018 <check+0x8>
@@ -221,7 +221,7 @@ Disassembly of section .text:
 80000338 <main>:
 80000338:	ff010113          	addi	sp,sp,-16
 8000033c:	00000517          	auipc	a0,0x0
-80000340:	11050513          	addi	a0,a0,272 # 8000044c <a>
+80000340:	12050513          	addi	a0,a0,288 # 8000045c <a>
 80000344:	01300613          	li	a2,19
 80000348:	00000593          	li	a1,0
 8000034c:	00812423          	sw	s0,8(sp)
@@ -246,7 +246,7 @@ Disassembly of section .text:
 80000398:	01300613          	li	a2,19
 8000039c:	00000593          	li	a1,0
 800003a0:	00000517          	auipc	a0,0x0
-800003a4:	0ac50513          	addi	a0,a0,172 # 8000044c <a>
+800003a4:	0bc50513          	addi	a0,a0,188 # 8000045c <a>
 800003a8:	d49ff0ef          	jal	ra,800000f0 <quick_sort>
 800003ac:	00000493          	li	s1,0
 800003b0:	00042503          	lw	a0,0(s0)
@@ -267,12 +267,16 @@ Disassembly of section .text:
 800003ec:	00008067          	ret
 
 800003f0 <halt>:
-800003f0:	0000006f          	j	800003f0 <halt>
+800003f0:	00050513          	mv	a0,a0
+800003f4:	00100073          	ebreak
+800003f8:	0000006f          	j	800003f8 <halt+0x8>
 
-800003f4 <_trm_init>:
-800003f4:	ff410113          	addi	sp,sp,-12
-800003f8:	00000517          	auipc	a0,0x0
-800003fc:	01450513          	addi	a0,a0,20 # 8000040c <_etext>
-80000400:	00112423          	sw	ra,8(sp)
-80000404:	f35ff0ef          	jal	ra,80000338 <main>
-80000408:	0000006f          	j	80000408 <_trm_init+0x14>
+800003fc <_trm_init>:
+800003fc:	ff410113          	addi	sp,sp,-12
+80000400:	00000517          	auipc	a0,0x0
+80000404:	01c50513          	addi	a0,a0,28 # 8000041c <_etext>
+80000408:	00112423          	sw	ra,8(sp)
+8000040c:	f2dff0ef          	jal	ra,80000338 <main>
+80000410:	00050513          	mv	a0,a0
+80000414:	00100073          	ebreak
+80000418:	0000006f          	j	80000418 <_trm_init+0x1c>

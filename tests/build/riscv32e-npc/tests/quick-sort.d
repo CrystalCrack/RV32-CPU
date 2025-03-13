@@ -1,8 +1,8 @@
-/home/crystc/ysyx-workbench/am-kernels/tests/cpu-tests/build/riscv32e-npc/tests/quick-sort.o: \
- /home/crystc/ysyx-workbench/am-kernels/tests/cpu-tests/tests/quick-sort.c \
- /home/crystc/ysyx-workbench/am-kernels/tests/cpu-tests/include/trap.h \
- /home/crystc/ysyx-workbench/abstract-machine/am/include/am.h \
- /home/crystc/ysyx-workbench/abstract-machine/am/include/arch/riscv.h \
- /home/crystc/ysyx-workbench/abstract-machine/am/include/amdev.h \
- /home/crystc/ysyx-workbench/abstract-machine/klib/include/klib.h \
- /home/crystc/ysyx-workbench/abstract-machine/klib/include/klib-macros.h
+/home/azureuser/RV32-CPU/tests/build/riscv32e-npc/tests/quick-sort.o: \
+ /home/azureuser/RV32-CPU/tests/tests/quick-sort.c \
+ /home/azureuser/RV32-CPU/tests/include/trap.h \
+ /home/azureuser/RV32-CPU/abstract-machine/am/include/am.h \
+ /home/azureuser/RV32-CPU/abstract-machine/am/include/arch/riscv.h \
+ /home/azureuser/RV32-CPU/abstract-machine/am/include/amdev.h \
+ /home/azureuser/RV32-CPU/abstract-machine/klib/include/klib.h \
+ /home/azureuser/RV32-CPU/abstract-machine/klib/include/klib-macros.h

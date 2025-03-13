@@ -2,7 +2,8 @@
 
 AM_HOME := $(CPU_HOME)/abstract-machine
 NPC_HOME := $(CPU_HOME)/core
-
+$(info AM_HOME=$(AM_HOME))
+$(info NPC_HOME=$(NPC_HOME))
 ### *Get a more readable version of this Makefile* by `make html` (requires python-markdown)
 html:
 	cat Makefile | sed 's/^\([^#]\)/    \1/g' | markdown_py > Makefile.html
@@ -123,6 +124,7 @@ $(DST_DIR)/%.o: %.S
 
 ### Rule (recursive make): build a dependent library (am, klib, ...)
 $(LIBS): %:
+	@echo \# Building library [$*]
 	@$(MAKE) -s -C $(AM_HOME)/$* archive
 
 ### Rule (link): objects (`*.o`) and libraries (`*.a`) -> `IMAGE.elf`, the final ELF binary to be packed into image (ld)

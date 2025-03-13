@@ -35,8 +35,8 @@ VM_PREFIX = Vnpc
 VM_MODPREFIX = Vnpc
 # User CFLAGS (from -CFLAGS on Verilator command line)
 VM_USER_CFLAGS = \
-	-I/home/crystc/workspace/RV32-CPU/core/csrc/include \
-	-I/home/crystc/workspace/RV32-CPU/core/tools/capstone/repo/include \
+	-I/home/azureuser/RV32-CPU/core/csrc/include \
+	-I/home/azureuser/RV32-CPU/core/tools/capstone/repo/include \
 	-DTOP_NAME="Vnpc" \
 
 # User LDLIBS (from -LDFLAGS on Verilator command line)
@@ -62,10 +62,10 @@ VM_USER_CLASSES = \
 
 # User .cpp directories (from .cpp's on Verilator command line)
 VM_USER_DIR = \
-	/home/crystc/workspace/RV32-CPU/core/csrc \
-	/home/crystc/workspace/RV32-CPU/core/csrc/device \
-	/home/crystc/workspace/RV32-CPU/core/csrc/infrastructure \
-	/home/crystc/workspace/RV32-CPU/core/csrc/utils \
+	/home/azureuser/RV32-CPU/core/csrc \
+	/home/azureuser/RV32-CPU/core/csrc/device \
+	/home/azureuser/RV32-CPU/core/csrc/infrastructure \
+	/home/azureuser/RV32-CPU/core/csrc/utils \
 
 
 ### Default rules...
@@ -77,27 +77,27 @@ include $(VERILATOR_ROOT)/include/verilated.mk
 ### Executable rules... (from --exe)
 VPATH += $(VM_USER_DIR)
 
-cpu.o: /home/crystc/workspace/RV32-CPU/core/csrc/cpu.cpp
+cpu.o: /home/azureuser/RV32-CPU/core/csrc/cpu.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-mmio.o: /home/crystc/workspace/RV32-CPU/core/csrc/device/mmio.c
+mmio.o: /home/azureuser/RV32-CPU/core/csrc/device/mmio.c
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-timer.o: /home/crystc/workspace/RV32-CPU/core/csrc/device/timer.c
+timer.o: /home/azureuser/RV32-CPU/core/csrc/device/timer.c
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-difftest.o: /home/crystc/workspace/RV32-CPU/core/csrc/infrastructure/difftest.c
+difftest.o: /home/azureuser/RV32-CPU/core/csrc/infrastructure/difftest.c
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-expr.o: /home/crystc/workspace/RV32-CPU/core/csrc/infrastructure/expr.c
+expr.o: /home/azureuser/RV32-CPU/core/csrc/infrastructure/expr.c
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-sdb.o: /home/crystc/workspace/RV32-CPU/core/csrc/infrastructure/sdb.c
+sdb.o: /home/azureuser/RV32-CPU/core/csrc/infrastructure/sdb.c
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-trace.o: /home/crystc/workspace/RV32-CPU/core/csrc/infrastructure/trace.c
+trace.o: /home/azureuser/RV32-CPU/core/csrc/infrastructure/trace.c
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-watchpoint.o: /home/crystc/workspace/RV32-CPU/core/csrc/infrastructure/watchpoint.c
+watchpoint.o: /home/azureuser/RV32-CPU/core/csrc/infrastructure/watchpoint.c
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-memory.o: /home/crystc/workspace/RV32-CPU/core/csrc/memory.cpp
+memory.o: /home/azureuser/RV32-CPU/core/csrc/memory.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-npc.o: /home/crystc/workspace/RV32-CPU/core/csrc/npc.cpp
+npc.o: /home/azureuser/RV32-CPU/core/csrc/npc.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-disasm.o: /home/crystc/workspace/RV32-CPU/core/csrc/utils/disasm.c
+disasm.o: /home/azureuser/RV32-CPU/core/csrc/utils/disasm.c
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 
 ### Link rules... (from --exe)
