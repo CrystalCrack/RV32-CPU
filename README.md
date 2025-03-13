@@ -58,7 +58,7 @@ Before running tests, some modification must be done.
 Above is a [diff format](https://ruanyifeng.com/blog/2012/08/how_to_read_diff.html) text. You need to modify the text by yourself. The row location of codes may be not accurate. In this case, `find` might be very useful.
 
 > A simple way to modify the file:
-> type `vim /usr/riscv64-linux-gnu/include/gnu/stubs.h`
+> type `sudo nano /usr/riscv64-linux-gnu/include/gnu/stubs.h`
 > 
 
 We prepared some tests program in `tests/tests`.
