@@ -25,6 +25,8 @@ Install necessary files before simulation:
 
 [check verilator manual](https://verilator.org/guide/latest/install.html)
 
+Noticed that your verilator version must be `v5.008` or later.
+
 **install dependant libraries**
 
 ```
