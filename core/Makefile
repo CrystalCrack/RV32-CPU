@@ -4,14 +4,14 @@ VERILATOR_FLAGS = --cc -D --exe --trace --build -j 4 -O3 --x-assign fast --x-ini
 
 TOPNAME = npc
 BUILD_DIR = ./build
-SIM_DIR = ./sim
+SIM_DIR = $(abspath ./sim)
 OBJ_DIR = $(BUILD_DIR)/obj_dir
 SIM_OBJ_DIR = $(SIM_DIR)/obj_dir
 BIN = $(BUILD_DIR)/$(TOPNAME)
 INC_PATH += $(abspath ./csrc/include) $(abspath ./tools/capstone/repo/include)
 
 $(shell mkdir -p $(BUILD_DIR))
-$(shell mkdir -p $(SIM_DIR))
+$(shell mkdir -p $(SIM_DIR) $(SIM_OBJ_DIR))
 
 
 # Project source
@@ -20,7 +20,7 @@ SIM_ALL ?= $(notdir $(shell find $(abspath ./csrc) -name "*.c" -or -name "*.cc" 
 SIM_CSRCS = $(shell find $(abspath ./csrc) -name "*.c" -or -name "*.cc" -or -name "*.cpp")
 CSRCS= $(SIM_CSRCS) $(SRC_AUTO_BIND)
 
-LOCAL_ARGS += -d $(CPU_HOME)/core/
+LOCAL_ARGS += -d $(CPU_HOME)/core/tools/riscv32-nemu-interpreter-so
 
 # Rules for NVBoard
 # include $(NVBOARD_HOME)/scripts/nvboard.mk
